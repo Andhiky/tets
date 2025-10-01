@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday 🎂</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffe6f0, #e6f0ff);
+      overflow: hidden;
+      font-family: "Comic Sans MS", cursive;
+    }
+
+    /* Frame Foto Bulat */
+    .photo-frame {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 8px dashed #ff80b5;
+      margin: auto;
+      box-shadow: 0 0 25px rgba(0,0,0,0.2);
+      animation: pulse 2s infinite;
+    }
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Tulisan Happy Birthday */
+    .title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #ff4d94;
+      text-shadow: 2px 2px #fff;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Balon animasi */
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      width: 60px;
+      height: 80px;
+      background: pink;
+      border-radius: 50% 50% 50% 50%;
+      animation: rise 8s linear infinite;
+    }
+    .balloon::after {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: #444;
+      transform: translateX(-50%);
+    }
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-120vh) scale(1.1); opacity: 0; }
+    }
+
+    /* Surat */
+    .letter {
+      display: none;
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.8);}
+      to {opacity: 1; transform: scale(1);}
+    }
+  </style>
+</head>
+<body class="flex flex-col justify-center items-center gap-6 text-center">
+
+  <!-- Judul -->
+  <h1 class="title">🎉 Happy Birthday Cantik 🎉</h1>
+
+  <!-- Frame foto -->
+  <div class="photo-frame">
+    <img src="images/image.png" alt="Foto Ulang Tahun">
+  </div>
+
+  <h2 class="text-pink-600 text-xl font-bold">Untukmu 💖</h2>
+
+  <!-- Tombol Surat -->
+  <button onclick="openLetter()"
+    class="px-6 py-3 bg-pink-500 text-white font-bold rounded-xl shadow-lg hover:bg-pink-600 transition">
+    💌 Buka Surat
+  </button>
+
+  <!-- Isi Surat -->
+  <div id="letterBox" class="letter max-w-md">
+    <h3 class="text-pink-500 text-xl font-bold">Selamat Ulang Tahun 🎂</h3>
+    <p class="mt-3 text-gray-700">
+      Semoga hari spesialmu penuh dengan kebahagiaan, tawa, dan cinta.  
+      Kamu layak mendapatkan yang terbaik hari ini 💕🎁
+    </p>
+  </div>
+
+  <!-- Balon animasi -->
+  <div class="balloon" style="left:10%; background:#ff99cc; animation-delay:0s;"></div>
+  <div class="balloon" style="left:30%; background:#99ccff; animation-delay:2s;"></div>
+  <div class="balloon" style="left:50%; background:#ffcc66; animation-delay:4s;"></div>
+  <div class="balloon" style="left:70%; background:#ccff99; animation-delay:1s;"></div>
+  <div class="balloon" style="left:90%; background:#ff6666; animation-delay:3s;"></div>
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    function openLetter() {
+      document.getElementById("letterBox").style.display = "block";
+      confetti({
+        particleCount: 150,
+        spread: 120,
+        origin: { y: 0.6 }
+      });
+    }
+
+    // confetti otomatis tiap 3 detik
+    setInterval(() => {
+      confetti({
+        particleCount: 50,
+        spread: 80,
+        origin: { y: 0.9 }
+      });
+    }, 3000);
+  </script>
+</body>
+</html>
